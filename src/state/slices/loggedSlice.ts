@@ -2,35 +2,33 @@ import { createSlice } from "@reduxjs/toolkit";
 import { stateType } from "../store";
 
 type userType = {
-    userName: string;
-    logged: boolean;
+  userName: string;
+  logged: boolean;
 };
 
-
 interface initialStateType {
-    user: userType,
+  user: userType;
 }
-
 
 const initialState: initialStateType = {
-    user : {
-        userName: "",
-        logged: true,
-    }
-}
-
+  user: {
+    userName: "",
+    logged: false,
+  },
+};
 
 const loggedSlice = createSlice({
-    name: "logged",
-    initialState,
-    reducers: {
-        logInReducer(state: initialStateType){
-            state.user.logged = true
-        },
-        logOutReducer(state: initialStateType){
-            state.user.logged = false
-        }
-    }
+  name: "logged",
+  initialState,
+  reducers: {
+    logInReducer(state: initialStateType, action) {
+      state.user.logged = true;
+      state.user.userName = action.payload
+    },
+    logOutReducer(state: initialStateType) {
+      state.user.logged = false;
+    },
+  },
 });
 
 export default loggedSlice.reducer;
@@ -41,4 +39,4 @@ export type { userType };
 
 export type loggedStateType = typeof initialState;
 
-export const selectUser = () => (state: stateType) => state.logged.user
+export const selectUser = () => (state: stateType) => state.logged.user;

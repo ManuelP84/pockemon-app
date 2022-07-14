@@ -1,14 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import loggedSlice from "./slices/loggedSlice";
 
 const store = configureStore({
-    reducer: {
-        logged: loggedSlice,
-    },
+  reducer: {
+    logged: loggedSlice,
+  },
 });
 
 export default store;
 
-type stateType = ReturnType<typeof store.getState>
+export type stateType = ReturnType<typeof store.getState>;
 
-export type { stateType }; 
+type dispatchType = typeof store.dispatch;
+
+export const appDispatch = () => useDispatch<dispatchType>();
+
+

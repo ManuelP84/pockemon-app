@@ -1,20 +1,72 @@
-import * as React from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import * as React from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectUser } from "../state/slices/loggedSlice";
+import { appDispatch } from "../state/store";
+import { logOutReducer } from "../state/slices/loggedSlice";
 
-interface IPockemonNavbarProps {
-}
+interface IPockemonNavbarProps {}
 
-const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = (props) => {
+const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
+  const user = useSelector(selectUser());
+  const dispatch = appDispatch();
+
   return (
     <div>
-        <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark sticky-top" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Home</Navbar.Brand>
+          <Navbar.Brand>
+            <Link className="nav-link" to={"/home"}>
+              <i>PockeApp</i>
+            </Link>
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Pockemons</Nav.Link>
-            <Nav.Link href="#features">Favorites</Nav.Link>
+            {user.logged && (
+              <>
+                <Nav.Link>
+                  <Link className="nav-link" to={"/pockemons"}>
+                    <i>Pockemons</i>
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link className="nav-link" to={"/favorites"}>
+                    <i>Favorites</i>
+                  </Link>
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+
+          <Nav>
+            {user.logged ? (
+              <>
+                <Nav.Link>
+                  <Link className="nav-link" to={""}>
+                    <b><i>Hi, {user.userName}!</i></b>
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link
+                    className="nav-link "
+                    to={"/home"}
+                    onClick={() => dispatch(logOutReducer())}
+                  >
+                    <i>Logout</i>
+                  </Link>
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link>
+                  <Link className="nav-link " to={"/login"}>
+                    <i>Login</i>
+                  </Link>
+                </Nav.Link>
+              </>
+            )}
           </Nav>
         </Container>
       </Navbar>
