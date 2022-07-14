@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { stateType } from "../store";
 
 type userType = {
     userName: string;
-    logged: boolean | null;
+    logged: boolean;
 };
 
 
@@ -14,7 +15,7 @@ interface initialStateType {
 const initialState: initialStateType = {
     user : {
         userName: "",
-        logged: false,
+        logged: true,
     }
 }
 
@@ -39,3 +40,5 @@ export const { logInReducer, logOutReducer } = loggedSlice.actions;
 export type { userType };
 
 export type loggedStateType = typeof initialState;
+
+export const selectUser = () => (state: stateType) => state.logged.user

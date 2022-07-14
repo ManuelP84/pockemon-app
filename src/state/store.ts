@@ -8,3 +8,7 @@ const store = configureStore({
 });
 
 export default store;
+
+type stateType = ReturnType<typeof store.getState>
+
+export type { stateType }; 
