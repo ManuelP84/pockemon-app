@@ -7,12 +7,14 @@ import Login from './components/Login'
 import PockemonFilter from './components/PockemonFilter'
 import PockemonCard from './components/PockemonCard'
 import PockemonDetail from './components/PockemonDetail'
+import PockemonNavbar from './components/Navbar'
 
 function App() {
   //const [count, setCount] = useState(0)
 
   return (
     <div>
+      <PockemonNavbar/>
       <Login/>
       <PockemonFilter/>      
       <PockemonList/>
