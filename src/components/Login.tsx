@@ -21,7 +21,13 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
   return (
     <>
       <div className="user_card">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
         <div className="d-flex justify-content-center">
+          
           <h3 id="form-title">LOGIN</h3>
         </div>
         <div className="d-flex justify-content-center form_container">

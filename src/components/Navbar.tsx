@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { selectUser } from "../state/slices/loggedSlice";
 import { appDispatch } from "../state/store";
 import { logOutReducer } from "../state/slices/loggedSlice";
+import Form from "react-bootstrap/Form";
+import Button from 'react-bootstrap/Button';
 
 interface IPockemonNavbarProps {}
 
@@ -20,7 +22,7 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
         <Container>
           <Navbar.Brand>
             <Link className="nav-link" to={"/home"}>
-              <i>PockeApp</i>
+              <i>PokeApp</i>
             </Link>
           </Navbar.Brand>
           <Nav className="me-auto">
@@ -28,7 +30,7 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
               <>
                 <Nav.Link>
                   <Link className="nav-link" to={"/pockemons"}>
-                    <i>Pockemons</i>
+                    <i>Pokemons</i>
                   </Link>
                 </Nav.Link>
                 <Nav.Link>
@@ -36,6 +38,15 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
                     <i>Favorites</i>
                   </Link>
                 </Nav.Link>
+                <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form>
               </>
             )}
           </Nav>
@@ -45,7 +56,9 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
               <>
                 <Nav.Link>
                   <Link className="nav-link" to={""}>
-                    <b><i>Hi, {user.userName}!</i></b>
+                    <b>
+                      <i>Hi, {user.userName}!</i>
+                    </b>
                   </Link>
                 </Nav.Link>
                 <Nav.Link>

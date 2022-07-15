@@ -1,14 +1,21 @@
-import './App.css'
-import Router from './components/routes/Router'
+import "./App.css";
+import Router from "./components/routes/Router";
+import { getPokemons } from "./services/getPockemons";
+import { appDispatch } from "./state/store";
+import { useEffect } from "react";
 
 function App() {
-  //const [count, setCount] = useState(0)
+  const dispatch = appDispatch();
+
+  useEffect(() => {
+    dispatch(getPokemons(50));
+  }, [dispatch]);
 
   return (
     <div>
-      <Router/>
+      <Router />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
