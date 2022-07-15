@@ -8,7 +8,8 @@ import Login from "../Login";
 import PockemonNavbar from "../Navbar";
 import PockemonDetail from "../PockemonDetail";
 import PockemonList from "../PockemonList";
-import { pockeType, selectPokemons } from "../../state/slices/pockemonSlice";
+import { selectPokemons } from "../../state/slices/pockemonSlice";
+import FindAPokemon from "../FindAPokemon";
 
 interface IRouterProps {}
 
@@ -34,6 +35,7 @@ const Router: React.FunctionComponent<IRouterProps> = (props) => {
           <Routes>
             <Route path="/pockemons" element={<PockemonList />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/find" element={<FindAPokemon />} />
             <Route path="/home" element={<Home />} />
             <Route
               path={`/pockemons/pokemon/${pokemon?.name}`}

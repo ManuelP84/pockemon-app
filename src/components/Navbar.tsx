@@ -37,14 +37,11 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
                     <i>Favorites</i>
                   </Link>
                 </Nav.Link>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                </Form>
+                <Nav.Link>
+                  <Link className="nav-link" to={"/find"}>
+                    <i>Find</i>
+                  </Link>
+                </Nav.Link>
               </>
             )}
           </Nav>
@@ -55,7 +52,7 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
                 <Nav.Link>
                   <Link className="nav-link" to={""}>
                     <b>
-                      <i>Hi, {user.userName}!</i>
+                      <i>Hey, {user.userName}!</i>
                     </b>
                   </Link>
                 </Nav.Link>

@@ -6,7 +6,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import { appDispatch } from "../state/store";
 import {
   addFavoriteReducer,
-  turnDetailTrue,
 } from "../state/slices/pockemonSlice";
 import { Link } from "react-router-dom";
 
