@@ -21,7 +21,14 @@ const initialState : initialStateType = {
 const pokeSlice = createSlice({
     name: "pockemon",
     initialState,
-    reducers: {},
+    reducers: {
+        addFavoriteReducer: (state, action) => {
+            state.pokemons = state.pokemons.map(poke => poke.id == action.payload ? {
+                ...poke,
+                isFavorite: !poke.isFavorite
+            }: poke)
+        }
+    },
 
     //GET POCKEMONS
     extraReducers: (builder) => {
@@ -39,3 +46,5 @@ export type { pockeType }
 export type pokeStateType = typeof initialState;
 
 export const selectPokemons = () => (state: stateType) => state.pokemon.pokemons
+
+export const { addFavoriteReducer } = pokeSlice.actions

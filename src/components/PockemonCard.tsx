@@ -1,7 +1,8 @@
 import * as React from "react";
-import { pockeType } from "../state/slices/pockemonSlice";
+import { addFavoriteReducer, pockeType } from "../state/slices/pockemonSlice";
 import { Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { appDispatch } from "../state/store";
 
 interface IPockemonCardProps {
   pokemon: pockeType;
@@ -10,25 +11,30 @@ interface IPockemonCardProps {
 const PockemonCard: React.FunctionComponent<IPockemonCardProps> = ({
   pokemon,
 }) => {
+  const dispatch = appDispatch();
   return (
     <div>
       {pokemon.sprite && (
         <Card.Body>
           <Card.Title>{pokemon.id}</Card.Title>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="favorite" />
+            <Form.Check
+              type="checkbox"
+              label="Like"
+              checked={pokemon.isFavorite}
+              onClick={() => dispatch(addFavoriteReducer(pokemon.id))}
+            />
           </Form.Group>
           <Card.Img
             variant="top"
             src={pokemon.sprite}
-            alt={`Image of pokémon ${pokemon.name}`}
+            alt={`Picture from the pokémon ${pokemon.name}`}
           />
         </Card.Body>
       )}
-      ,
       <Card.Body>
         <Card.Title>
-          <i>{pokemon.name}</i>
+          <i>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</i>
         </Card.Title>
       </Card.Body>
       <Card.Body>
