@@ -6,12 +6,25 @@ import Favorites from "../Favorites";
 import Home from "../Home";
 import Login from "../Login";
 import PockemonNavbar from "../Navbar";
+import PockemonDetail from "../PockemonDetail";
 import PockemonList from "../PockemonList";
+import { pockeType, selectPokemons } from "../../state/slices/pockemonSlice";
 
 interface IRouterProps {}
 
 const Router: React.FunctionComponent<IRouterProps> = (props) => {
   const user = useSelector(selectUser());
+
+  const pokemons = useSelector(selectPokemons());
+  const pokemon = pokemons.find((poke) => poke.detailsActive == true);
+  const pokeDefault = {
+    id: 1,
+    name: "",
+    sprite: "",
+    weight: 1,
+    isFavorite: false,
+    detailsActive: true,
+  };
 
   return (
     <div>
@@ -22,6 +35,12 @@ const Router: React.FunctionComponent<IRouterProps> = (props) => {
             <Route path="/pockemons" element={<PockemonList />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/home" element={<Home />} />
+            <Route
+              path={`/pockemons/pokemon/${pokemon?.name}`}
+              element={
+                <PockemonDetail pokemon={pokemon ? pokemon : pokeDefault} />
+              }
+            />
           </Routes>
         )}
 

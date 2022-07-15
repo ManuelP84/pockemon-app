@@ -1,8 +1,13 @@
 import * as React from "react";
-import { addFavoriteReducer, pockeType } from "../state/slices/pockemonSlice";
+import {
+  addFavoriteReducer,
+  pockeType,
+  turnDetailTrue,
+} from "../state/slices/pockemonSlice";
 import { Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { appDispatch } from "../state/store";
+import { Link } from "react-router-dom";
 
 interface IPockemonCardProps {
   pokemon: pockeType;
@@ -32,13 +37,21 @@ const PockemonCard: React.FunctionComponent<IPockemonCardProps> = ({
           />
         </Card.Body>
       )}
+
       <Card.Body>
         <Card.Title>
           <i>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</i>
         </Card.Title>
       </Card.Body>
+
       <Card.Body>
-        <Card.Link href={`pokemon/${pokemon.name}`}>Info</Card.Link>
+        <Link
+          className={"link-dark btn btn-warning btn-lg active p-2"}
+          to={`pokemon/${pokemon.name}`}
+          onClick={() => dispatch(turnDetailTrue(pokemon.id))}
+        >
+          Details
+        </Link>
       </Card.Body>
     </div>
   );

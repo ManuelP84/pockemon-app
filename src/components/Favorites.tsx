@@ -1,11 +1,12 @@
 import * as React from "react";
-import { CardGroup, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useSelector } from "react-redux";
 import { selectPokemons } from "../state/slices/pockemonSlice";
 import Form from "react-bootstrap/Form";
 import { appDispatch } from "../state/store";
-import { addFavoriteReducer, pockeType } from "../state/slices/pockemonSlice";
+import { addFavoriteReducer } from "../state/slices/pockemonSlice";
+import { Link } from "react-router-dom";
 
 interface IFavoritesProps {}
 
@@ -42,19 +43,30 @@ const Favorites: React.FunctionComponent<IFavoritesProps> = () => {
                       <Card.Img
                         variant="top"
                         src={pokemon.sprite}
-                        alt={`Picture from the pokémon ${pokemon.name.charAt(0).toUpperCase + pokemon.name.slice(1)}`}
+                        alt={`Picture from the pokémon ${
+                          pokemon.name.charAt(0).toUpperCase +
+                          pokemon.name.slice(1)
+                        }`}
                       />
                     </Card.Body>
 
                     <Card.Body>
                       <Card.Title>
-                        <i>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</i>
+                        <i>
+                          {pokemon.name.charAt(0).toUpperCase() +
+                            pokemon.name.slice(1)}
+                        </i>
                       </Card.Title>
                     </Card.Body>
                     <Card.Body>
-                      <Card.Link href={`pokemon/${pokemon.name}`}>
-                        Info
-                      </Card.Link>
+                      <Link
+                        className={
+                          "link-dark btn btn-success btn-lg active p-2"
+                        }
+                        to={`/pockemons`}
+                      >
+                        Pokemons
+                      </Link>
                     </Card.Body>
                   </Card>
                 </>

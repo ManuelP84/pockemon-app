@@ -8,7 +8,6 @@ import { selectUser } from "../state/slices/loggedSlice";
 import { appDispatch } from "../state/store";
 import { logOutReducer } from "../state/slices/loggedSlice";
 import Form from "react-bootstrap/Form";
-import Button from 'react-bootstrap/Button';
 
 interface IPockemonNavbarProps {}
 
@@ -45,7 +44,6 @@ const PockemonNavbar: React.FunctionComponent<IPockemonNavbarProps> = () => {
                     className="me-2"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success">Search</Button>
                 </Form>
               </>
             )}
